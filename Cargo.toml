@@ -1,0 +1,14 @@
+[package]
+name = "glabrous"
+version = "0.1.0"
+description = "Glabrous is a minimalistic Mustache-like syntax - using only the simplest Mustache tag: {{name}} -, truly logic-less, HTML agnostic pure String template DSL library."
+authors = ["Michel Boucey <michel.boucey@gmail.com>"]
+edition = "2024"
+categories = ["template-engine"]
+license = "GPL-3.0"
+homepage = "https://github.com/MichelBoucey/glabrous-rs"
+repository = "https://github.com/MichelBoucey/glabrous-rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
