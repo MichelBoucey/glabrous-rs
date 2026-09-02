@@ -21,9 +21,9 @@ assert_eq!(result, "Hello, World!");
 
 - A `Template` can be written to and read from files.
 
-- A `Template` can be partially filled with `Context` to get new `Template`.
+- A `Template` can be partially filled with a partial `Context` to get a new `Template`.
 
-- A `Template` can be inserted in another one to get new `Template`.
+- A `Template` can be inserted in another one to get a new `Template`.
 
 - A `Context` can be written to and read from files through `JSON` serialization.
 
