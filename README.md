@@ -1,4 +1,4 @@
-# Glabrous: A template DSL library for Rust
+# Glabrous: A template DSL library for Rust [![CI](https://github.com/MichelBoucey/glabrous-rs/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MichelBoucey/glabrous-rs/actions/workflows/ci.yml)
 
 `Glabrous` is a Rust implementation of [the Haskell library Glabrous](https://hackage.haskell.org/package/glabrous).
 
