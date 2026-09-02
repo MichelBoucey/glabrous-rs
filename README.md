@@ -6,7 +6,7 @@
 
 `Glabrous` is a Rust implementation of [the Haskell library Glabrous](https://hackage.haskell.org/package/glabrous).
 
-## 2. Usage
+## 2. Basic usage
 
 ```rust
 use glabrous::{from_text, init_context, set_variables, process};
@@ -23,7 +23,7 @@ assert_eq!(result, "Hello, World!");
 
 - A `Template` can be partially filled with a partial `Context` to get a new `Template`.
 
-- A `Template` can be inserted in another one to get a new `Template`.
+- One or many `Template`(s) can be inserted at once in another one to get a new `Template`.
 
 - A `Context` can be written to and read from files through `JSON` serialization.
 
