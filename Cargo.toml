@@ -8,6 +8,7 @@ categories = ["template-engine"]
 license = "GPL-3.0"
 homepage = "https://github.com/MichelBoucey/glabrous-rs"
 repository = "https://github.com/MichelBoucey/glabrous-rs"
+exclude = [".github/*", ".gitignore", "target/*"]
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
