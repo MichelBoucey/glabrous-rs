@@ -495,16 +495,20 @@ fn compress_merges_adjacent_literals() {
 
 #[test]
 fn insert_template_inserts_at_tag() {
-    let template = from_text("a{{x}}b").expect("parse should succeed");
-    let inserted = from_text("HI").expect("parse should succeed");
+    let template = from_text("a{{x}}d").expect("parse should succeed");
+    let inserted = from_text(" b {{y}} {{z}} c ").expect("parse should succeed");
     let result = insert_template(&template, &Token::Tag("x".to_string()), &inserted)
         .expect("tag should be present");
     assert_eq!(
         result.content,
         vec![
             Token::Literal("a".to_string()),
-            Token::Literal("HI".to_string()),
-            Token::Literal("b".to_string()),
+            Token::Literal(" b ".to_string()),
+            Token::Tag("y".to_string()),
+            Token::Literal(" ".to_string()),
+            Token::Tag("z".to_string()),
+            Token::Literal(" c ".to_string()),
+            Token::Literal("d".to_string()),
         ]
     );
 }
