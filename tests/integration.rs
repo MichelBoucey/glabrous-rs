@@ -516,7 +516,7 @@ fn insert_template_inserts_at_tag() {
 #[test]
 fn insert_template_returns_none_for_missing_tag() {
     let template = from_text("a{{x}}b").expect("parse should succeed");
-    let inserted = from_text("HI").expect("parse should succeed");
+    let inserted = from_text("HI {{p}} THERE").expect("parse should succeed");
     assert_eq!(
         insert_template(&template, &Token::Tag("no".to_string()), &inserted),
         None
@@ -526,7 +526,7 @@ fn insert_template_returns_none_for_missing_tag() {
 #[test]
 fn insert_template_returns_none_for_literal_token() {
     let template = from_text("a{{x}}b").expect("parse should succeed");
-    let inserted = from_text("HI").expect("parse should succeed");
+    let inserted = from_text("HI {{p}} THERE").expect("parse should succeed");
     assert_eq!(
         insert_template(&template, &Token::Literal("x".to_string()), &inserted),
         None
@@ -536,8 +536,8 @@ fn insert_template_returns_none_for_literal_token() {
 #[test]
 fn insert_many_templates_inserts_in_order() {
     let template = from_text("A{{x}}B{{y}}C").expect("parse should succeed");
-    let inserted_x = from_text("1").expect("parse should succeed");
-    let inserted_y = from_text("2").expect("parse should succeed");
+    let inserted_x = from_text("1 {{p}} 2").expect("parse should succeed");
+    let inserted_y = from_text("3 {{q}} 4").expect("parse should succeed");
     let result = insert_many_templates(
         &template,
         &[
@@ -550,9 +550,13 @@ fn insert_many_templates_inserts_in_order() {
         result.content,
         vec![
             Token::Literal("A".to_string()),
-            Token::Literal("1".to_string()),
+            Token::Literal("1 ".to_string()),
+            Token::Tag("p".to_string()),
+            Token::Literal(" 2".to_string()),
             Token::Literal("B".to_string()),
-            Token::Literal("2".to_string()),
+            Token::Literal("3 ".to_string()),
+            Token::Tag("q".to_string()),
+            Token::Literal(" 4".to_string()),
             Token::Literal("C".to_string()),
         ]
     );
@@ -561,7 +565,7 @@ fn insert_many_templates_inserts_in_order() {
 #[test]
 fn insert_many_templates_returns_none_for_missing_tag() {
     let template = from_text("A{{x}}B").expect("parse should succeed");
-    let inserted = from_text("1").expect("parse should succeed");
+    let inserted = from_text("1 {{p}} 2").expect("parse should succeed");
     assert_eq!(
         insert_many_templates(
             &template,
@@ -574,8 +578,8 @@ fn insert_many_templates_returns_none_for_missing_tag() {
 #[test]
 fn insert_many_templates_returns_none_when_out_of_order() {
     let template = from_text("A{{x}}B{{y}}C").expect("parse should succeed");
-    let inserted_x = from_text("1").expect("parse should succeed");
-    let inserted_y = from_text("2").expect("parse should succeed");
+    let inserted_x = from_text("1 {{p}} 2").expect("parse should succeed");
+    let inserted_y = from_text("3 {{q}} 4").expect("parse should succeed");
     assert_eq!(
         insert_many_templates(
             &template,
