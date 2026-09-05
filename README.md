@@ -31,6 +31,20 @@ let result = process(&template, &context);
 assert_eq!(result, "Hello, World!");
 ```
 
-## 4. Example
+## 4. Install
+
+Run the following `Cargo` command in your project directory:
+
+```
+cargo add glabrous
+```
+
+Or add the following line to your `Cargo.toml`:
+
+```
+glabrous = "0.1.0"
+```
+
+## 5. Example
 
 One can find an example demonstrating the full library API in `examples/` which can be run with `cargo run --example pseudo-latin`.
